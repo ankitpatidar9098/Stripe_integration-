@@ -1,0 +1,31 @@
+<%= form_tag payments_new_path do %>
+    <script src="https://js.stripe.com/v3/"></script>
+  
+    <div class="form-row">
+      <label for="card-element">
+        Credit or debit card
+      </label>
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+  
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+  
+    <!-- Submit button -->
+    <button type="submit">Submit Payment</button>
+  <% end %>
+  
+  <script>
+    // Set up Stripe.js and Elements to use in checkout form
+    var stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
+    var elements = stripe.elements();
+  
+    // Create an instance of the card Element.
+    var card = elements.create('card');
+  
+    // Add an instance of the card Element into the `card-element` div.
+    card.mount('#card-element');
+  </script>
+  

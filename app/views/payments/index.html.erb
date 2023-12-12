@@ -1,0 +1,7 @@
+<h1>Ticket</h1>
+<% @tickets.each do |ticket| %>
+  <h2><%= ticket.name %></h2>
+  <p><%= ticket.price %></p>
+  <%= link_to 'Buy Now', payments_path %>
+  <hr>
+<% end %>

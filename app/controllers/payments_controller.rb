@@ -15,7 +15,6 @@ def purchase
     # byebug
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
-      # name: params[:customerName],
       source: params[:stripeToken] 
     )
 
@@ -30,7 +29,7 @@ def purchase
 
     payment_intent = Stripe::PaymentIntent.create(
       amount: @ticket.price,  
-      currency: 'usd',
+      currency: 'inr',
       description: @ticket.name,
       payment_method: payment_method.id,
       customer: customer['id'],
